@@ -1,6 +1,6 @@
 package lexer
 
-import "github.com/grindrllc/monkey/token"
+import "github.com/catherinetcai/monkey/token"
 
 type Lexer struct {
 	input        string
@@ -34,12 +34,12 @@ func (l *Lexer) NextToken() token.Token {
 	case '-':
 		tok = newToken(token.MINUS, l.ch)
 	case '!':
-		if l.peekChar() == "=" {
+		if l.peekChar() == '=' {
 			ch := l.ch
 			l.readChar()
 			tok = token.Token{Type: token.NOT_EQ, Literal: string(ch) + string(l.ch)}
 		} else {
-			token = newToken(token.BANG, l.ch)
+			tok = newToken(token.BANG, l.ch)
 		}
 	case '/':
 		tok = newToken(token.SLASH, l.ch)
